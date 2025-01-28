@@ -15,23 +15,16 @@
 	<link rel="shortcut icon" href="https://screening.mhanational.org/favicon.ico">
 	<meta name="msapplication-TileColor" content="#FFFFFF">
 	<meta name="theme-color" content="#365888">
-	<script>window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push({
-			'event': 'traffic_type',
-			'traffic_type': 'external'
-		});
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-		window.dataLayer.push({
-			'event': 'screen_test'
-		});
 	<link rel="preconnect" href="https://fonts.gstatic.com/">
 	<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
 	<script>(function (html) { html.className = html.className.replace(/\bno-js\b/, 'js') })(document.documentElement);</script>
 	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-	<link media="all" href="depresi-assets/wp-content/cache/autoptimize/css/autoptimize_7a1ecf2654b585c47ef39ad343596e82.css"
+	<link media="all" href="{{ asset("depresi-assets/wp-content/cache/autoptimize/css/autoptimize_7a1ecf2654b585c47ef39ad343596e82.css") }}"
 		rel="stylesheet" />
-	<link media="print" href="depresi-assets/wp-content/cache/autoptimize/css/autoptimize_5653ccbbff2bf3fde17022871919df8b.css"
+	<link media="print" href="{{ asset("depresi-assets/wp-content/cache/autoptimize/css/autoptimize_5653ccbbff2bf3fde17022871919df8b.css") }}"
 		rel="stylesheet" />
 	<title>Diagnosis Infeksi Jamur</title>
 	<meta name="description"
@@ -40,7 +33,7 @@
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="Depression Test" />
-	<meta property="og:description"
+	<meta property="og:description" />
 
 	<meta property="og:url" content="https://screening.mhanational.org/screening-tools/depression/" />
 	<meta property="og:site_name" content="MHA Screening" />
@@ -400,12 +393,12 @@
         justify-content: center; /* Untuk sentralisasi konten secara vertikal */
     }
 	</style>
-	<link rel='stylesheet' id='dashicons-css' href='depresi-assets/wp-includes/css/dashicons.min6a4d.css?ver=6.1.1'
+	<link rel='stylesheet' id='dashicons-css' href='{{ asset("depresi-assets/wp-includes/css/dashicons.min6a4d.css?ver=6.1.1") }}'
 		media='all' />
-	<script src='depresi-assets/wp-includes/js/jquery/jquery.mina7a0.js?ver=3.6.1' id='jquery-core-js'></script>
-	<script src='depresi-assets/wp-includes/js/jquery/jquery-migrate.mind617.js?ver=3.3.2' id='jquery-migrate-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/jquery/jquery.mina7a0.js?ver=3.6.1") }}' id='jquery-core-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/jquery/jquery-migrate.mind617.js?ver=3.3.2") }}' id='jquery-migrate-js'></script>
 	<!--[if lt IE 9]> <script src='https://screening.mhanational.org/wp-content/themes/mha_s2s/assets/js/html5.js?ver=3.7.3' id='html5-js'></script> <![endif]-->
-	<script defer='defer' src='depresi-assets/wp-content/plugins/gravityforms/js/jquery.json.min91ac.js?ver=2.6.8'
+	<script defer='defer' src='{{ asset("depresi-assets/wp-content/plugins/gravityforms/js/jquery.json.min91ac.js?ver=2.6.8") }}'
 		id='gform_json-js'></script>
 	<script
 		id='gform_gravityforms-js-extra'>var gf_global = { "gf_currency_config": { "name": "U.S. Dollar", "symbol_left": "$", "symbol_right": "", "symbol_padding": "", "thousand_separator": ",", "decimal_separator": ".", "decimals": 2, "code": "USD" }, "base_url": "https:\/\/screening.mhanational.org\/wp-content\/plugins\/gravityforms", "number_formats": [], "spinnerUrl": "https:\/\/screening.mhanational.org\/wp-content\/plugins\/gravityforms\/images\/spinner.svg", "strings": { "newRowAdded": "New row added.", "rowRemoved": "Row removed", "formSaved": "The form has been saved.  The content contains the link to return and complete the form." } };
@@ -414,10 +407,10 @@
 			var gform_gravityforms = { "strings": { "invalid_file_extension": "This type of file is not allowed. Must be one of the following:", "delete_file": "Delete this file", "in_progress": "in progress", "file_exceeds_limit": "File exceeds size limit", "illegal_extension": "This type of file is not allowed.", "max_reached": "Maximum number of files reached", "unknown_error": "There was a problem while saving the file on the server", "currently_uploading": "Please wait for the uploading to complete", "cancel": "Cancel", "cancel_upload": "Cancel this upload", "cancelled": "Cancelled" }, "vars": { "images_url": "https:\/\/screening.mhanational.org\/wp-content\/plugins\/gravityforms\/images" } };</script>
 	<script
 		id='gform_gravityforms-js-before'>var gform; gform || (document.addEventListener("gform_main_scripts_loaded", function () { gform.scriptsLoaded = !0 }), window.addEventListener("DOMContentLoaded", function () { gform.domLoaded = !0 }), gform = { domLoaded: !1, scriptsLoaded: !1, initializeOnLoaded: function (o) { gform.domLoaded && gform.scriptsLoaded ? o() : !gform.domLoaded && gform.scriptsLoaded ? window.addEventListener("DOMContentLoaded", o) : document.addEventListener("gform_main_scripts_loaded", o) }, hooks: { action: {}, filter: {} }, addAction: function (o, n, r, t) { gform.addHook("action", o, n, r, t) }, addFilter: function (o, n, r, t) { gform.addHook("filter", o, n, r, t) }, doAction: function (o) { gform.doHook("action", o, arguments) }, applyFilters: function (o) { return gform.doHook("filter", o, arguments) }, removeAction: function (o, n) { gform.removeHook("action", o, n) }, removeFilter: function (o, n, r) { gform.removeHook("filter", o, n, r) }, addHook: function (o, n, r, t, i) { null == gform.hooks[o][n] && (gform.hooks[o][n] = []); var e = gform.hooks[o][n]; null == i && (i = n + "_" + e.length), gform.hooks[o][n].push({ tag: i, callable: r, priority: t = null == t ? 10 : t }) }, doHook: function (n, o, r) { var t; if (r = Array.prototype.slice.call(r, 1), null != gform.hooks[n][o] && ((o = gform.hooks[n][o]).sort(function (o, n) { return o.priority - n.priority }), o.forEach(function (o) { "function" != typeof (t = o.callable) && (t = window[t]), "action" == n ? t.apply(null, r) : r[0] = t.apply(null, r) })), "filter" == n) return r[0] }, removeHook: function (o, n, t, i) { var r; null != gform.hooks[o][n] && (r = (r = gform.hooks[o][n]).filter(function (o, n, r) { return !!(null != i && i != o.tag || null != t && t != o.priority) }), gform.hooks[o][n] = r) } });</script>
-	<script defer='defer' src='depresi-assets/wp-content/plugins/gravityforms/js/gravityforms.min91ac.js?ver=2.6.8'
+	<script defer='defer' src='{{ asset("depresi-assets/wp-content/plugins/gravityforms/js/gravityforms.min91ac.js?ver=2.6.8") }}'
 		id='gform_gravityforms-js'></script>
 	<script id='gform_conditional_logic-js-extra'>var gf_legacy = { "is_legacy": "1" };</script>
-	<script defer='defer' src='depresi-assets/wp-content/plugins/gravityforms/js/conditional_logic.min91ac.js?ver=2.6.8'
+	<script defer='defer' src='{{ asset("depresi-assets/wp-content/plugins/gravityforms/js/conditional_logic.min91ac.js?ver=2.6.8") }}'
 		id='gform_conditional_logic-js'></script>
 	<link rel="https://api.w.org/" href="https://screening.mhanational.org/wp-json/" />
 	<link rel="alternate" type="application/json" href="https://screening.mhanational.org/wp-json/wp/v2/screen/22" />
@@ -618,17 +611,13 @@
 								class="heading left-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-406">
 								<a href="#">Diagnosis Infeksi Jamur</a>
 							</li>
-							<li id="menu-item-405"
-								class="heading menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-405">
-								<a href="{{ url('/') }}">Home</a>
-							</li>
 						</ul>
 					</div>
 					<div class="menu-main-menu-buttons-container">
 						<ul id="main-menu-buttons" class="menu">
 							<li id="menu-item-400"
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a
-									href="/form">Cek Infeksi Jamur</a></li>
+									href="{{ url('/') }}">Home</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -646,8 +635,6 @@
 					<div class="page-intro">
 						<div class='gf_browser_safari gform_wrapper gform_legacy_markup_wrapper' id='gform_wrapper_1'
 							style='display:none'>
-							<form method='post' enctype='multipart/form-data' id='gform_1' action="#" novalidate>
-								@csrf
 								<ol class="screen-progress-bar clearfix step-3-of-3">
 									<li class="step-1"><span>Informasi<br />Tes</span></li>
 									<li class="step-2"><span>Pertanyaan<br />Tes</span></li>
@@ -673,7 +660,7 @@
                         <th scope="row">1</th>
                         <td>{{ $diagnosis->diagnosis_id }}</td>
                         <td> {{ $diagnosis_dipilih["kode_penyakit"]->kode_penyakit }} | {{ $diagnosis_dipilih["kode_penyakit"]->penyakit }} </td>
-                        <td> {{ ($diagnosis_dipilih["value"] * 100) }} % </td>
+                        <td> {{ round(($diagnosis_dipilih["value"] * 100), 2) }} % </td>
                     </tr>
                 </tbody>
             </table>
@@ -762,8 +749,10 @@
                       <h5 class="card-title">
                         {{ $diagnosis_dipilih["kode_penyakit"]->kode_penyakit }} | {{ $diagnosis_dipilih["kode_penyakit"]->penyakit }}
                         </h5>
-                      <p class="card-text">Jadi dapat disimpulkan bahwa pasien mengalami infeksi jamur yaitu <span class="fw-semibold fs-4">{{ round(($hasil["value"] * 100), 2) }}</span> %</p>
-                      {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                      <p class="card-text">Jadi dapat disimpulkan bahwa pasien mengalami <strong>{{ $diagnosis_dipilih["kode_penyakit"]->penyakit }}</strong> dengan persentase sebesar <span class="fw-semibold fs-4">{{ round(($diagnosis_dipilih["value"] * 100), 2) }}</span> %</p>
+                      <p class="card-text">Penanganan : <br>
+                      {{ $diagnosis_dipilih["kode_penyakit"]->penangan }}
+                      </p>
                     </div>
                 </div>
             </div>
@@ -771,8 +760,14 @@
 
         <!-- Print Button -->
         <div class="text-center mt-3">
-            <button class="btn-print" onclick="window.print()">PRINT HASIL</button>
+            <button class="btn-print" onclick="printUserReport()">PRINT HASIL</button>
         </div>
+        @if(session('user_role') == 1)
+            <div class="text-center mt-3">
+                <a href="{{ route('diagnosis.indexAdmin') }}" class="btn btn-print">Kembali ke Dashboard Admin</a>
+            </div>
+        @endif
+
 										</div>
 									</div>
 								</div>
@@ -792,58 +787,152 @@
 			</div>
 		</footer>
 	</div>
+
+<script>
+        function printUserReport() {
+    // Data dari server-side (gunakan Blade untuk menyisipkan data secara dinamis)
+    var namaPengunjung = {!! json_encode($akun->nama) !!}; // Nama pengunjung
+    var gejala = {!! json_encode($gejala_by_user) !!}; // Gejala dalam bentuk array
+    var penyakit = {!! json_encode($diagnosis_dipilih["kode_penyakit"]->penyakit) !!};
+    var pengobatan = {!! json_encode($diagnosis_dipilih["kode_penyakit"]->penangan) !!};
+
+    var gejalaArray = Object.values(gejala);
+
+    // Membuka jendela baru untuk mencetak
+    var reportWindow = window.open('', '_blank');
+    reportWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Cetak Hasil Konsultasi</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        </head>
+        <body text="black" align="center">
+            <center>
+                <table width="1000" border="0" cellpadding="2" cellspacing="1">
+                    <tr>
+                        <td>
+                            <font size="5">
+                                <center>HASIL DIAGNOSIS INFEKSI KULIT AKIBAT JAMUR<br>RSUD Dr. Margono Soekarjo</center>
+                            </font>
+                            <font size="2">
+                                <center>Alamat: Jl. Dr. Angka No. 1-2 Purwokerto, Kabupaten Banyumas Provinsi Jawa Tengah, Kode Pos 53122</center>
+                            </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><hr></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <center>
+                                <table width="100%" border="1" cellspacing="1" cellpadding="2">
+                                    <thead>
+                                        <tr align="center">
+                                            <th>Nama</th>
+                                            <th>Gejala Yang Didiagnosis</th>
+                                            <th>Penyakit</th>
+                                            <th>Pengobatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr align="center">
+                                            <td>${namaPengunjung}</td>
+                                            <td>
+                                            ${gejalaArray.map(item => `${item[0]} - ${item[2]}`).join('<br>')}
+                                            </td>
+                                            <td>${penyakit}</td>
+                                            <td>${pengobatan}</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <table width="1000" border="0">
+                        <tr>
+                            <td width="750">&nbsp;</td>
+                            <td colspan="3">
+                                <div align="left">
+                                    <font size="3">
+                                        Mengetahui,<br><br><br><br><br><br>
+                                        <u>Dr.CITRA PRIMANITA,Sp.KK</u><br>
+                                    </font>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+            </center>
+            <script>
+                window.print();
+                window.close();
+            <\/script>
+        </body>
+        </html>
+    `);
+    reportWindow.document.close();
+}
+
+    </script>
+
 	<script
 		id='process_mhaActivity-js-extra'>var do_mhaActivity = { "ajaxurl": "https:\/\/screening.mhanational.org\/wp-admin\/admin-ajax.php" };</script>
-	<script src='depresi-assets/wp-content/plugins/mha_activity/mha_activitye084.js?ver=1672585009'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_activity/mha_activitye084.js?ver=1672585009") }}'
 		id='process_mhaActivity-js'></script>
 	<script
 		id='process_mhaDiyTools-js-extra'>var do_mhaDiyTools = { "ajaxurl": "https:\/\/screening.mhanational.org\/wp-admin\/admin-ajax.php" };</script>
-	<script src='depresi-assets/wp-content/plugins/mha_activity/diy_tools6a8d.js?ver=v20221209_p2'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_activity/diy_tools6a8d.js?ver=v20221209_p2") }}'
 		id='process_mhaDiyTools-js'></script>
 	<script
 		id='process_diyToolsExport-js-extra'>var do_mhaDiyToolsExport = { "ajaxurl": "https:\/\/screening.mhanational.org\/wp-admin\/admin-ajax.php" };</script>
-	<script src='depresi-assets/wp-content/plugins/mha_exports/diy_exporte084.js?ver=1672585009'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_exports/diy_exporte084.js?ver=1672585009") }}'
 		id='process_diyToolsExport-js'></script>
-	<script src='depresi-assets/wp-content/plugins/mha_screens/assets/jquery.validate.min5152.js?ver=1.0'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_screens/assets/jquery.validate.min5152.js?ver=1.0") }}'
 		id='mhaScreen_validate-js'></script>
 	<script
 		id='process_mhaScreenEmail-js-extra'>var do_mhaScreenEmail = { "ajaxurl": "https:\/\/screening.mhanational.org\/wp-admin\/admin-ajax.php" };</script>
-	<script src='depresi-assets/wp-content/plugins/mha_screens/mha_screens0e7c.js?ver=1.1.20221213pm'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_screens/mha_screens0e7c.js?ver=1.1.20221213pm") }}'
 		id='process_mhaScreenEmail-js'></script>
 	<script
 		id='process_mhaContent-js-extra'>var do_mhaContent = { "ajaxurl": "https:\/\/screening.mhanational.org\/wp-admin\/admin-ajax.php" };</script>
-	<script src='depresi-assets/wp-content/plugins/mha_shard/inc/js/scripts92ad.js?ver=20221206_1'
+	<script src='{{ asset("depresi-assets/wp-content/plugins/mha_shard/inc/js/scripts92ad.js?ver=20221206_1") }}'
 		id='process_mhaContent-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/skip-link-focus-fix5152.js?ver=1.0'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/skip-link-focus-fix5152.js?ver=1.0") }}'
 		id='mha_s2s-skip-link-focus-fix-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/hoverIntentac14.js?ver=0.7'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/hoverIntentac14.js?ver=0.7") }}'
 		id='mha_s2s-hover-intent-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/superfish.min7fe1.js?ver=1.7.10.1'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/superfish.min7fe1.js?ver=1.7.10.1") }}'
 		id='mha_s2s-superfish-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/macy.min5152.js?ver=1.0' id='mha_s2s-macy-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/bootstrap/js/bootstrap.bundle.min5b31.js?ver=4.3.1'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/macy.min5152.js?ver=1.0") }}' id='mha_s2s-macy-js'></script>
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/bootstrap/js/bootstrap.bundle.min5b31.js?ver=4.3.1") }}'
 		id='mha_s2s-bootstrap-js-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/jquery.ui.custom.min0028.js?ver=1.13.1'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/jquery.ui.custom.min0028.js?ver=1.13.1") }}'
 		id='mha_s2s-jqueryui-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/glide9608.js?ver=3.6.0.1' id='mha_s2s-glide-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/aos.min6c28.js?ver=3.0.0v2' id='mha_s2s-aos-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/iframe-resizer.min274c.js?ver=4.3.2'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/glide9608.js?ver=3.6.0.1") }}' id='mha_s2s-glide-js'></script>
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/aos.min6c28.js?ver=3.0.0v2") }}' id='mha_s2s-aos-js'></script>
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/iframe-resizer.min274c.js?ver=4.3.2") }}'
 		id='mha_s2s-iframeresizer-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/jquery.sticky-sidebar.min3d36.js?ver=3.3.1'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/jquery.sticky-sidebar.min3d36.js?ver=3.3.1") }}'
 		id='mha_s2s-sticky-js'></script>
-	<script src='depresi-assets/wp-content/themes/mha_s2s/assets/js/global6834.js?ver=v20221201_2'
+	<script src='{{ asset("depresi-assets/wp-content/themes/mha_s2s/assets/js/global6834.js?ver=v20221201_2") }}'
 		id='mha_s2s-global-js'></script>
-	<script src='depresi-assets/wp-includes/js/dist/vendor/regenerator-runtime.min3937.js?ver=0.13.9'
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/vendor/regenerator-runtime.min3937.js?ver=0.13.9") }}'
 		id='regenerator-runtime-js'></script>
-	<script src='depresi-assets/wp-includes/js/dist/vendor/wp-polyfill.min2c7c.js?ver=3.15.0' id='wp-polyfill-js'></script>
-	<script src='depresi-assets/wp-includes/js/dist/dom-ready.minded6.js?ver=392bdd43726760d1f3ca' id='wp-dom-ready-js'></script>
-	<script src='depresi-assets/wp-includes/js/dist/hooks.min6c65.js?ver=4169d3cf8e8d95a3d6d5' id='wp-hooks-js'></script>
-	<script src='depresi-assets/wp-includes/js/dist/i18n.mine57b.js?ver=9e794f35a71bb98672ae' id='wp-i18n-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/vendor/wp-polyfill.min2c7c.js?ver=3.15.0") }}' id='wp-polyfill-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/dom-ready.minded6.js?ver=392bdd43726760d1f3ca") }}' id='wp-dom-ready-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/hooks.min6c65.js?ver=4169d3cf8e8d95a3d6d5") }}' id='wp-hooks-js'></script>
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/i18n.mine57b.js?ver=9e794f35a71bb98672ae") }}' id='wp-i18n-js'></script>
 	<script id='wp-i18n-js-after'>wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });</script>
-	<script src='depresi-assets/wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664' id='wp-a11y-js'></script>
-	<script defer='defer' src='depresi-assets/wp-content/plugins/gravityforms/js/placeholders.jquery.min91ac.js?ver=2.6.8'
+	<script src='{{ asset("depresi-assets/wp-includes/js/dist/a11y.min65c7.js?ver=ecce20f002eda4c19664") }}' id='wp-a11y-js'></script>
+	<script defer='defer' src='{{ asset("depresi-assets/wp-content/plugins/gravityforms/js/placeholders.jquery.min91ac.js?ver=2.6.8") }}'
 		id='gform_placeholder-js'></script>
-	<script defer='defer' src='depresi-assets/google/www.google.com/recaptcha/apieee6.js?hl=en&amp;ver=6.1.1#038;render=explicit'
+	<script defer='defer' src='{{ asset("depresi-assets/google/www.google.com/recaptcha/apieee6.js?hl=en&amp;ver=6.1.1#038;render=explicit") }}'
 		id='gform_recaptcha-js'></script>
 	<script>document.addEventListener('facetwp-refresh', function () {
 			if (FWP.facets.hasOwnProperty('location_search') && FWP.facets['location_search'].length > 0) {
@@ -873,8 +962,11 @@
 	<script>gform.initializeOnLoaded(function () { jQuery(document).trigger('gform_post_render', [4, 1]) });</script>
 	<script type="text/javascript">(function () {
 			var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
-			sz.src = 'depresi-assets/google/siteimproveanalytics.com/js/siteanalyze_6229968.js';
+			sz.src = '{{ asset("depresi-assets/google/siteimproveanalytics.com/js/siteanalyze_6229968.js") }}';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
 		})();</script>
+
 </body>
 </html>
+
+

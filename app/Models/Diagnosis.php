@@ -11,5 +11,5 @@ class Diagnosis extends Model
     protected $table = 'tbldiagnosis';
 
     protected $guard = ["id"];
-    protected $fillable = ["diagnosis_id", "data_diagnosis", "kondisi"];
+    protected $fillable = ["diagnosis_id", "data_diagnosis", "kondisi", "id_akun"];
 }

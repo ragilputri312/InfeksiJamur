@@ -10,6 +10,6 @@ class Penyakit extends Model
     use HasFactory;
 
     protected $table = 'tblpenyakit'; // Nama tabel yang digunakan
-    protected $fillable = ['kode_penyakit', 'penyakit']; // Kolom yang dapat diisi
+    protected $fillable = ['kode_penyakit', 'penyakit', 'penangan']; // Kolom yang dapat diisi
     public $timestamps = true; // Untuk otomatis mengatur created_at dan updated_at
 }

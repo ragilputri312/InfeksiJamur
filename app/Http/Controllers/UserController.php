@@ -37,13 +37,16 @@ class UserController extends Controller
                 'user_role' => $akun->id_role,
             ]);
 
+            $redirectUrl = session('redirect_url', '/form');
+            session()->forget('redirect_url');
+
             // Periksa id_role untuk menentukan redirect
             if ($akun->id_role == 1) {
                 // Redirect ke dashboard
                 return redirect()->route('dashboard')->with('success', 'Login berhasil sebagai Admin!');
             } elseif ($akun->id_role == 2) {
                 // Redirect ke landing
-                return redirect()->route('landing')->with('success', 'Login berhasil sebagai User!');
+                return redirect($redirectUrl)->with('success', 'Login berhasil sebagai User!');
             }
 
             // Jika id_role tidak dikenali (opsional)

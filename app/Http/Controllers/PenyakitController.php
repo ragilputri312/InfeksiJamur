@@ -15,17 +15,27 @@ class PenyakitController extends Controller
          return view('admin.penyakit.penyakit', compact('penyakit'));
      }
 
+     public function show($id)
+    {
+        // Cari penyakit berdasarkan ID
+        $penyakit = Penyakit::findOrFail($id);
+
+        return response()->json($penyakit);
+    }
+    
      // Menyimpan data penyakit baru
      public function store(Request $request)
      {
          $request->validate([
              'kode_penyakit' => 'required|unique:tblpenyakit',
              'penyakit' => 'required',
+             'penangan' => 'required',
          ]);
 
          Penyakit::create([
              'kode_penyakit' => $request->kode_penyakit,
              'penyakit' => $request->penyakit,
+             'penangan' => $request->penangan,
          ]);
 
          session()->flash('success', 'Penyakit berhasil ditambahkan!');
@@ -38,12 +48,14 @@ class PenyakitController extends Controller
          $request->validate([
              'kode_penyakit' => 'required',
              'penyakit' => 'required',
+             'penangan' => 'required',
          ]);
 
          $penyakit = Penyakit::findOrFail($id);
          $penyakit->update([
              'kode_penyakit' => $request->kode_penyakit,
              'penyakit' => $request->penyakit,
+             'penangan' => $request->penangan,
          ]);
 
          session()->flash('success', 'Penyakit berhasil diubah!');

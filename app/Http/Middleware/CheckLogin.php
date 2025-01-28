@@ -14,13 +14,17 @@ class CheckLogin
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        // Periksa apakah user sudah login
-        if (!session()->has('user_id')) {
-            // Redirect ke halaman login jika belum login
-            return redirect()->route('user.showlogin')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-        }
+{
+    // Periksa apakah user sudah login
+    if (!session()->has('user_id')) {
+        // Simpan URL yang ingin diakses sebelum login
+        session(['redirect_url' => url()->current()]);
 
-        return $next($request);
+        // Redirect ke halaman login jika belum login
+        return redirect()->route('user.showlogin')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
     }
+
+    return $next($request);
+}
+
 }

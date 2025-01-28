@@ -85,8 +85,14 @@
                 <a class="shadow-hover" href="/">Dashboard</a>
             </li>
             <li>
-                <a class="shadow-hover" href="/form-diagnosa">Diagnosa</a>
+                <a class="shadow-hover" href="/form-diagnosa">Diagnosis</a>
             </li>
+
+            @if(session('user_role') == 1)
+            <li>
+                <a class="shadow-hover" href="/dashboard">Halaman Admin</a>
+            </li>
+            @endif
 
             <!-- Menu untuk user yang belum login -->
             @if (!session()->has('user_id'))
@@ -219,7 +225,7 @@
         // Type text
 
         var typed = new Typed('#typed-1', {
-            strings: ['diagnosa', 'solusi', 'atasi'],
+            strings: ['Diagnosis', 'Penyakit', 'Kulit'],
             typeSpeed: 45,
             backSpeed: 0,
             startDelay: 200,

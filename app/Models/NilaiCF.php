@@ -10,4 +10,6 @@ class NilaiCF extends Model
     use HasFactory;
 
     protected $table = 'tblnilaicf';
+    protected $fillable = ['kode_gejala', 'kode_penyakit', 'mb', 'md']; // Kolom yang dapat diisi
+    public $timestamps = true;
 }

@@ -36,6 +36,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Kode Penyakit</th>
                     <th scope="col">Penyakit</th>
+                    <th scope="col">Penanganan</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -45,10 +46,12 @@
                             <th scope="row">{{ $loop->iteration + $penyakit->firstItem() - 1 }}</th>
                             <td>{{ $item->kode_penyakit }}</td>
                             <td>{{ $item->penyakit }}</td>
+                            <td>{{ $item->penangan }}</td>
                             <td>
-                                <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateInput('{{ route('penyakit.update', ':id') }}','{{ $item->id }}', '{{ $item->kode_penyakit }}', '{{ $item->penyakit }}')">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
+                            <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateInput('{{ route('penyakit.update', ':id') }}', '{{ $item->id }}')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+
                                 <form action="{{ route('penyakit.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @method('DELETE')
                                     @csrf()

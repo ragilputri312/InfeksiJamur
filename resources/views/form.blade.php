@@ -27,6 +27,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 		window.dataLayer.push({
 			'event': 'screen_test'
 		});
+    </script>
 	<link rel="preconnect" href="https://fonts.gstatic.com/">
 	<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
 	<script>(function (html) { html.className = html.className.replace(/\bno-js\b/, 'js') })(document.documentElement);</script>
@@ -614,17 +615,13 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 								class="heading left-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-406">
 								<a href="#">Diagnosis Infeksi Jamur</a>
 							</li>
-							<li id="menu-item-405"
-								class="heading menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-405">
-								<a href="{{ url('/') }}">Home</a>
-							</li>
 						</ul>
 					</div>
 					<div class="menu-main-menu-buttons-container">
 						<ul id="main-menu-buttons" class="menu">
 							<li id="menu-item-400"
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a
-									href="/form">Cek Infeksi Jamur</a></li>
+									href="{{ url('/') }}">Home</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -727,7 +724,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
                         type="radio"
                         value="{{ $kondisi->nilai }}"
                         id="choice_{{ $loop->parent->iteration }}_{{ $loop->iteration }}"
-                        onclick="toggleRadio(this, 'kondisi_{{ $item->kode_gejala }}')"
+                        onclick="toggleRadio(this, 'choice_{{ $loop->parent->iteration }}_{{ $loop->iteration }}')"
                         onchange="document.getElementById('kondisi_{{ $item->kode_gejala }}{{ $loop->parent->iteration }}').value = this.value" />
                     <label for="choice_{{ $loop->parent->iteration }}_{{ $loop->iteration }}" id="label_{{ $loop->parent->iteration }}_{{ $loop->iteration }}">{{ $kondisi->kondisi }}</label>
                 </li>
@@ -854,27 +851,32 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 
 <script>
 function toggleRadio(radio, hiddenFieldId) {
-    const hiddenField = document.getElementById(hiddenFieldId);
+	const hiddenField = document.getElementById(hiddenFieldId);
 
-    // Jika radio sudah dipilih sebelumnya
-    if (radio.checked && radio.dataset.selected === "true") {
-        // Hapus centang dan kosongkan nilai hidden field
-        radio.checked = false;
-        hiddenField.value = "";
-        radio.dataset.selected = "false";
-    } else {
-        // Set radio sebagai terpilih dan isi hidden field
-        radio.dataset.selected = "true";
-        hiddenField.value = radio.value;
+	if (!hiddenField) {
+		console.error(`Element with id ${hiddenFieldId} not found.`);
+		return;
+	}
 
-        // Reset dataset.selected untuk radio lain dalam grup
-        const radios = document.getElementsByName(radio.name);
-        radios.forEach((btn) => {
-            if (btn !== radio) {
-                btn.dataset.selected = "false";
-            }
-        });
-    }
+	if (radio.dataset.selected === "true") {
+		// Uncheck the radio and clear the hidden field
+		radio.checked = false;
+		radio.dataset.selected = "false";
+		hiddenField.value = "";
+	} else {
+		// Set radio as selected and fill the hidden field
+		radio.checked = true;
+		radio.dataset.selected = "true";
+		hiddenField.value = radio.value || "";
+
+		// Reset dataset.selected for other radios in the group
+		const radios = document.getElementsByName(radio.name);
+		radios.forEach((btn) => {
+			if (btn !== radio) {
+				btn.dataset.selected = "false";
+			}
+		});
+	}
 }
 </script>
 

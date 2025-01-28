@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TblAkun;
 use App\Models\Gejala;
 use App\Models\Penyakit;
+use App\Models\Diagnosis;
 
 class AdminController extends Controller
 {
@@ -15,15 +16,15 @@ class AdminController extends Controller
         // Ambil data dari database
         $gejala = Gejala::all();
         $penyakit = Penyakit::all();
-        $admin = Tblakun::where('id_role', 1)->get();
+        $diagnosis = Diagnosis::all();
 
         // Hitung jumlah data
         $gejala_count = $gejala->count();
         $penyakit_count = $penyakit->count();
-        $admin_count = $admin->count();
+        $diagnosis_count = $diagnosis->count();
 
         // Kirim data ke tampilan
-        return view('admin.dashboard', compact('gejala', 'penyakit', 'admin', 'gejala_count', 'penyakit_count', 'admin_count'));
+        return view('admin.dashboard', compact('gejala', 'penyakit', 'diagnosis', 'gejala_count', 'penyakit_count', 'diagnosis_count'));
     }
 
     public function create()
