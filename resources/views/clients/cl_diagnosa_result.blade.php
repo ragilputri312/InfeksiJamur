@@ -674,7 +674,7 @@
                     <table class="table table-hover mt-5 border border-primary p-3 mx-3">
                         <thead>
                             <tr>
-                                <th colspan="3" class="text-center">Pakar</th>
+                                <th colspan="4" class="text-center">Pakar</th>
                             </tr>
                             <tr>
                                 <th scope="col">No</th>

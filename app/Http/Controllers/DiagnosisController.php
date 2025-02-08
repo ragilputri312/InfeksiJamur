@@ -100,14 +100,27 @@ class DiagnosisController extends Controller
         $cfoldGabungan = $cfArr["cf"][0];
 
         for ($i = 1; $i < count($cfArr["cf"]); $i++) {
-            $cfoldGabungan = $cfoldGabungan + $cfArr["cf"][$i] * (1 - abs($cfoldGabungan));
+            $CF1 = $cfoldGabungan;
+            $CF2 = $cfArr["cf"][$i];
+
+            if ($CF1 > 0 && $CF2 > 0) {
+                // Kedua CF positif
+                $cfoldGabungan = $CF1 + $CF2 * (1 - $CF1);
+            } elseif ($CF1 < 0 && $CF2 < 0) {
+                // Kedua CF negatif
+                $cfoldGabungan = $CF1 + $CF2 * (1 + $CF1);
+            } else {
+                // CF memiliki tanda yang berbeda
+                $cfoldGabungan = ($CF1 + $CF2) / (1 - min(abs($CF1), abs($CF2)));
+            }
         }
 
         return [
             "value" => strval($cfoldGabungan),
-            "kode_penyakit" => $cfArr["kode_penyakit"][0]
+            "kode_penyakit" => $cfArr["kode_penyakit"][0] ?? null
         ];
     }
+
 
     public function diagnosisResult($diagnosis_id)
 {
