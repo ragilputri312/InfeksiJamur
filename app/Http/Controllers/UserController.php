@@ -9,6 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        // Periksa apakah user sudah login
+        if (session()->has('user_id')) {
+            // Ambil informasi user dari session
+            $user_id = session('user_id');
+            $user_name = session('user_name');
+            $user_role = session('user_role');
+
+            // Kirim data ke view landing page
+            return view('landing', compact('user_id','user_name', 'user_role'));
+        }
+
+        // Jika belum login, kirim data kosong
+        return view('landing');
+    }
+
     public function showlogin()
     {
         return view('login'); // sesuaikan dengan view form yang telah dibuat sebelumnya
@@ -37,7 +54,7 @@ class UserController extends Controller
                 'user_role' => $akun->id_role,
             ]);
 
-            $redirectUrl = session('redirect_url', '/form');
+            $redirectUrl = session('redirect_url', '/');
             session()->forget('redirect_url');
 
             // Periksa id_role untuk menentukan redirect
@@ -100,6 +117,6 @@ class UserController extends Controller
         session()->flash('success', 'Registrasi berhasil! Silakan login.');
 
         // Redirect ke halaman lain setelah berhasil
-        return redirect()->route('user.login');
+        return redirect()->route('user.showlogin');
     }
 }

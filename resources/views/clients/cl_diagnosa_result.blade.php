@@ -679,7 +679,8 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Gejala</th>
-                                <th scope="col">Nilai (MB - MD)</th>
+                                <th scope="col">Nilai MB</th>
+								<th scope="col">Nilai MD</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -689,7 +690,8 @@
                                     <td>
                                         {{ $item->kode_gejala }} | {{ $item->kode_penyakit }}
                                     </td>
-                                    <td>{{ $item->mb - $item->md }}</td>
+                                    <td>{{ $item->mb }}</td>
+									<td>{{ $item->md }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -716,24 +718,32 @@
                         </tbody>
                     </table>
 
-                    <!-- Table CF Gabungan -->
-                    <table class="table table-hover mt-5 border border-info p-3 mx-3">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Hasil</th>
-                            </tr>
-                            <tr>
-                                <th scope="col">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cf_kombinasi["cf"] as $key)
-                            <tr>
-                                <td>{{ $key }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <!-- Table CF Gabungan (Dihitung dengan MB * Nilai User - MD) -->
+					<table class="table table-hover mt-5 border border-info p-3 mx-3">
+						<thead>
+							<tr>
+								<th class="text-center">Hasil</th>
+							</tr>
+							<tr>
+								<th scope="col">Nilai</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($pakar as $item)
+								@php
+									// Cari nilai user berdasarkan kode gejala
+									$userValue = collect($gejala_by_user)->firstWhere(0, $item->kode_gejala)[1] ?? 0;
+
+									// Hitung CF = (MB * Nilai User) - MD
+									$cf = ($item->mb * $userValue) - $item->md;
+								@endphp
+								<tr>
+									<td>{{ $cf }}</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+
                 </div>
             </div>
         </div>

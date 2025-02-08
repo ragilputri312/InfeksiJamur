@@ -17,6 +17,7 @@ Route::get('login', [UserController::class, 'showlogin'])->name('user.showlogin'
 Route::post('login', [UserController::class, 'login']);
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/registration', [UserController::class, 'registration'])->name('user.registration');
+Route::resource('user', UserController::class);
 
 // Terapkan middleware langsung pada route
 Route::get('/form-diagnosa', function () {
@@ -41,7 +42,7 @@ Route::get('/diagnosis/result/{diagnosis_id}', [DiagnosisController::class, 'dia
 Route::get('/hasil_diagnosis', [DiagnosisController::class, 'indexAdmin'])->name('diagnosis.indexAdmin')->middleware(CheckLogin::class);
 Route::get('/getDiagnosisData/{diagnosis_id}', [DiagnosisController::class, 'getDiagnosisData'])->middleware(CheckLogin::class);
 
-Route::resource('user', UserController::class)->middleware(CheckLogin::class);
+
 //admin
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard')->middleware(CheckLogin::class);
 

@@ -99,8 +99,8 @@ class DiagnosisController extends Controller
 
         $cfoldGabungan = $cfArr["cf"][0];
 
-        for ($i = 0; $i < count($cfArr["cf"]) - 1; $i++) {
-            $cfoldGabungan += $cfArr["cf"][$i + 1] * (1 - $cfoldGabungan);
+        for ($i = 1; $i < count($cfArr["cf"]); $i++) {
+            $cfoldGabungan = $cfoldGabungan + $cfArr["cf"][$i] * (1 - abs($cfoldGabungan));
         }
 
         return [
@@ -187,7 +187,7 @@ class DiagnosisController extends Controller
 }
 
 
-    public function getCfCombinasi($pakar, $user)
+public function getCfCombinasi($pakar, $user)
 {
     if (count($pakar) !== count($user)) {
         return [
@@ -211,7 +211,7 @@ class DiagnosisController extends Controller
             $cfComb[] = $CF1 + $CF2 * (1 + $CF1);
         } else {
             // Salah satu atau kedua CF berbeda tanda
-            $cfComb[] = $CF1 + $CF2 / (1 - min(abs($CF1), abs($CF2)));
+            $cfComb[] = $CF1 + ($CF2 / (1 - min(abs($CF1), abs($CF2)))); // Tambahkan tanda kurung
         }
     }
 
@@ -220,6 +220,7 @@ class DiagnosisController extends Controller
         "kode_penyakit" => ["0"]  // Placeholder untuk kode penyakit (sesuaikan jika perlu)
     ];
 }
+
 
 public function indexAdmin()
 {
@@ -351,7 +352,7 @@ public function getDiagnosisData($diagnosis_id)
             'cf_kombinasi' => $cfKombinasi,
             'hasil' => $hasil
         ]);
-       
+
     }
 
 
