@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <style>
     body {
-      background-image: url('landing/img/bg_infeksi.PNG');
+      background-image: url('landing/img/bg_autoimun.png');
       background-size: cover;
       background-position: center;
       font-family: 'Lato', sans-serif;
@@ -92,12 +92,12 @@
         </div>
     @endif
 
-    <form method="POST" action="#">
+    <form method="POST" action="{{ url('login') }}">
       @csrf
       <div class="form-group">
-        <label for="email" class="col-form-label text-md-end">{{ __('Email') }}</label>
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Masukkan email">
-        @error('email')
+        <label for="telepon" class="col-form-label text-md-end">Nomor Telepon</label>
+        <input id="telepon" type="tel" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" required autofocus placeholder="Masukkan nomor telepon">
+        @error('telepon')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
           </span>
@@ -106,8 +106,8 @@
 
       <div class="form-group">
         <label for="password" class="col-form-label text-md-end">{{ __('Password') }}</label>
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="sandi" required autocomplete="current-password" placeholder="Masukkan password">
-        @error('password')
+        <input id="password" type="password" class="form-control @error('sandi') is-invalid @enderror" name="sandi" required autocomplete="current-password" placeholder="Masukkan password">
+        @error('sandi')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
           </span>

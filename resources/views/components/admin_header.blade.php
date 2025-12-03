@@ -15,9 +15,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
-            <img src="assets/img/profil.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block ps-2"><h6>{{ session('user_name') }}</h6></span>
-          </a><!-- End Profile Iamge Icon -->
+            <span class="d-none d-md-block"><h6>{{ session('user_name') }}</h6></span>
+          </a><!-- End Profile -->
 
         </li><!-- End Profile Nav -->
 

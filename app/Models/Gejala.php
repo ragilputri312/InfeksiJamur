@@ -10,6 +10,11 @@ class Gejala extends Model
     use HasFactory;
 
     protected $table = 'tblgejala'; // Nama tabel yang digunakan
-    protected $fillable = ['kode_gejala', 'gejala']; // Kolom yang dapat diisi
+    protected $fillable = ['kode_gejala', 'gejala', 'pertanyaan', 'is_active', 'urutan']; // Kolom yang dapat diisi
     public $timestamps = true; // Untuk otomatis mengatur created_at dan updated_at
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'urutan' => 'integer',
+    ];
 }

@@ -36,7 +36,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 		rel="stylesheet" />
 	<link media="print" href="depresi-assets/wp-content/cache/autoptimize/css/autoptimize_5653ccbbff2bf3fde17022871919df8b.css"
 		rel="stylesheet" />
-	<title>Diagnosis Infeksi Jamur</title>
+	<title>Diagnosis Autoimun</title>
 	<meta name="description"
 		content="Take our depression test if you are feeling overwhelming sadness—it&#039;s free, quick, confidential, and scientifically validated." />
 	<link rel="canonical" href="index.html" />
@@ -613,7 +613,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 						<ul id="main-menu" class="sf-menu">
 							<li id="menu-item-406"
 								class="heading left-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-406">
-								<a href="#">Diagnosis Infeksi Jamur</a>
+								<a href="#">Diagnosis Autoimun</a>
 							</li>
 						</ul>
 					</div>
@@ -631,7 +631,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 			<article id="post-22" class="post-22 screen type-screen status-publish hentry condition-depression">
 				<div class="wrap normal">
 					<div class="page-heading plain">
-						<h1 class="entry-title">Diagnosis Infeksi Jamur</h1>
+						<h1 class="entry-title">Diagnosis Autoimun</h1>
 					</div>
 				</div>
 				<div class="wrap medium">
@@ -639,7 +639,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 						<div class='gf_browser_safari gform_wrapper gform_legacy_markup_wrapper' id='gform_wrapper_1'
 							style='display:none'>
 							<div class='gform_heading'>
-								<h3 class="gform_title">Tes Infeksi Jamur</h3> <span class='gform_description'></span>
+								<h3 class="gform_title">Tes Diagnosis Autoimun</h3> <span class='gform_description'></span>
 							</div>
 							<form method='post' enctype='multipart/form-data' id='gform_1' action="{{ route('diagnosis.store') }}" novalidate>
 								@csrf
@@ -656,7 +656,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 												<li id="field_1_4"
 													class="gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_above gfield_visibility_visible"
 													data-js-reload="field_1_4">
-													<p><strong>Dalam hari ini</strong>, seberapa sering masalah-masalah berikut ini mengganggu kulit Anda?</p>
+													<p><strong>Dalam akhir-akhir ini</strong>, seberapa sering anda mengalami masalah-masalah berikut ini?</p>
 													<p>Minimal anda mengisi 2 gejala, jadi pastikan untuk memberikan jawaban yang tepat sesuai dengan apa yang anda alami.</p>
 												</li>
 												<li id="field_1_38"
@@ -714,7 +714,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 
                                                 @foreach($gejala as $item)
 <li id="field_{{ $loop->iteration }}" class="gfield question gfield_contains_required field_sublabel_below field_description_above gfield_visibility_visible" data-js-reload="field_{{ $loop->iteration }}">
-    <label class='gfield_label'>{{ $loop->iteration }}. Apakah anda merasa {{ $item->gejala }}?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label>
+    <label class='gfield_label'>{{ $loop->iteration }}. Apakah anda mengalami {{ $item->gejala }}?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label>
     <div class='ginput_container ginput_container_radio'>
         <ul class='gfield_radio' id='input_{{ $loop->iteration }}'>
             @foreach($nilai_interval as $kondisi)
@@ -755,7 +755,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
         <footer id="footer" class="clear">
 			<div id="smart-footer">
 				<div class="wrap normal text-center">
-                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Infeksi Jamur</h6>
+                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Autoimun</h6>
 				</div>
 			</div>
 		</footer>

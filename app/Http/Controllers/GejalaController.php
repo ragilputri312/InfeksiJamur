@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Gejala;
 use Illuminate\Http\Request;
+use App\Http\Requests\GejalaStoreRequest;
+use App\Http\Requests\GejalaUpdateRequest;
 
 class GejalaController extends Controller
 {
     // Menampilkan data gejala
     public function index()
     {
-        $gejala = Gejala::paginate(10); // Mengambil data gejala dengan pagination
+        $gejala = Gejala::orderBy('created_at', 'desc')->paginate(10); // Mengambil data gejala dengan pagination, diurutkan berdasarkan yang terakhir dibuat
         return view('admin.gejala.gejala', compact('gejala'));
     }
 
     // Menyimpan data gejala baru
-    public function store(Request $request)
+    public function store(GejalaStoreRequest $request)
     {
-        $request->validate([
-            'kode_gejala' => 'required|unique:tblgejala',
-            'gejala' => 'required',
-        ]);
-
         Gejala::create([
             'kode_gejala' => $request->kode_gejala,
             'gejala' => $request->gejala,
+            'pertanyaan' => $request->pertanyaan,
+            'is_active' => (bool)($request->is_active ?? true),
+            'urutan' => $request->urutan,
         ]);
 
         session()->flash('success', 'Gejala berhasil ditambahkan!');
@@ -32,17 +32,15 @@ class GejalaController extends Controller
     }
 
     // Mengupdate data gejala
-    public function update(Request $request, $id)
+    public function update(GejalaUpdateRequest $request, $id)
     {
-        $request->validate([
-            'kode_gejala' => 'required',
-            'gejala' => 'required',
-        ]);
-
         $gejala = Gejala::findOrFail($id);
         $gejala->update([
             'kode_gejala' => $request->kode_gejala,
             'gejala' => $request->gejala,
+            'pertanyaan' => $request->pertanyaan,
+            'is_active' => (bool)($request->is_active ?? $gejala->is_active),
+            'urutan' => $request->urutan,
         ]);
 
         session()->flash('success', 'Gejala berhasil diubah!');

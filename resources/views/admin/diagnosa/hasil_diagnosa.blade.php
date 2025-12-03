@@ -1,5 +1,5 @@
 @extends('admin.admin_main')
-@section('title', 'Hasil Diagnosa')
+@section('title', 'Hasil Diagnosis')
 
 {{-- isi --}}
 @section('admin_content')
@@ -12,7 +12,7 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Diagnosa ID</th>
+                            <th scope="col">Diagnosis ID</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Gejala</th>
                             <th scope="col">Penyakit</th>

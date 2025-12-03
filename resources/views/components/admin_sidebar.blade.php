@@ -25,18 +25,34 @@
         </li><!-- End Penyakit Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('nilaicf*') ? '' : 'collapsed' }}" href="{{ route('nilaicf.index') }}">
-                <i class="bi bi-gear"></i>
-                <span>Nilai Certainty Factor</span>
+            <a class="nav-link {{ Request::is('ds-rules*') ? '' : 'collapsed' }}" href="{{ route('ds-rules.index') }}">
+                <i class="bi bi-diagram-3"></i>
+                <span>Relasi Gejala-Penyakit</span>
             </a>
-        </li><!-- End Nilai CF Page Nav -->
+        </li><!-- End DS Rules Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('hasil_diagnosis*') ? '' : 'collapsed' }}" href="{{ route('diagnosis.indexAdmin') }}">
-                <i class="bi bi-clipboard2-data"></i>
-                <span>Hasil Diagnosa</span>
+            <a class="nav-link {{ Request::is('fuzzy-parameters*') ? '' : 'collapsed' }}" href="{{ route('fuzzy-parameters.index') }}">
+                <i class="bi bi-sliders"></i>
+                <span>Parameter Fuzzy</span>
             </a>
-        </li>
+        </li><!-- End Fuzzy Parameters Page Nav -->
+
+        {{-- Temporarily Hidden --}}
+        {{-- <li class="nav-item">
+            <a class="nav-link {{ Request::is('admin/fuzzy-rules*') ? '' : 'collapsed' }}" href="{{ route('admin.fuzzy-rules.index') }}">
+                <i class="bi bi-diagram-2"></i>
+                <span>Aturan Fuzzy</span>
+            </a>
+        </li><!-- End Fuzzy Rules Page Nav --> --}}
+
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('admin/ds-diagnosis*') ? '' : 'collapsed' }}" href="{{ route('admin.ds-diagnosis.index') }}">
+                <i class="bi bi-clipboard2-data"></i>
+                <span>Hasil Diagnosis</span>
+            </a>
+        </li><!-- End DS Diagnosis Results Nav -->
+
 
         <li class="nav-heading">Pengaturan</li>
 

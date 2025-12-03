@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <style>
     body {
-      background-image: url('landing/img/bg_infeksi.PNG');
+      background-image: url('landing/img/bg_autoimun.png');
       background-size: cover;
       background-position: center;
       font-family: 'Lato', sans-serif;
@@ -106,8 +106,8 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Masukkan email">
+                <label for="telepon">Nomor Telepon:</label>
+                <input id="telepon" type="tel" class="form-control" name="telepon" value="{{ old('telepon') }}" required placeholder="Masukkan nomor telepon">
             </div>
 
             <div class="form-group">

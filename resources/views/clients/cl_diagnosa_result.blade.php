@@ -26,7 +26,7 @@
 		rel="stylesheet" />
 	<link media="print" href="{{ asset("depresi-assets/wp-content/cache/autoptimize/css/autoptimize_5653ccbbff2bf3fde17022871919df8b.css") }}"
 		rel="stylesheet" />
-	<title>Diagnosis Infeksi Jamur</title>
+	<title>Diagnosis Autoimun</title>
 	<meta name="description"
 		content="Take our depression test if you are feeling overwhelming sadness—it&#039;s free, quick, confidential, and scientifically validated." />
 	<link rel="canonical" href="index.html" />
@@ -609,7 +609,7 @@
 						<ul id="main-menu" class="sf-menu">
 							<li id="menu-item-406"
 								class="heading left-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-406">
-								<a href="#">Diagnosis Infeksi Jamur</a>
+								<a href="#">Diagnosis Autoimun</a>
 							</li>
 						</ul>
 					</div>
@@ -628,7 +628,7 @@
 			<article id="post-22" class="post-22 screen type-screen status-publish hentry condition-depression">
 				<div class="wrap normal">
 					<div class="page-heading plain">
-						<h1 class="entry-title">Hasil Diagnosis Infeksi Jamur</h1>
+						<h1 class="entry-title">Hasil Diagnosis Autoimun</h1>
 					</div>
 				</div>
 				<div class="wrap medium">
@@ -645,7 +645,7 @@
 										<div class='gform_page_fields'>
 
                                         <!-- Section 1 -->
-        <div class="col-lg-10 mx-auto equal-height">
+        <!-- <div class="col-lg-10 mx-auto equal-height">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -664,13 +664,12 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
-        <!-- Section 2 -->
+        <!-- Section 2
         <div class="row">
             <div class="col-lg-12 mx-auto">
                 <div class="d-flex flex-wrap justify-content-center">
-                    <!-- Table Pakar -->
                     <table class="table table-hover mt-5 border border-primary p-3 mx-3">
                         <thead>
                             <tr>
@@ -697,7 +696,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Table User -->
                     <table class="table table-hover mt-5 border border-danger p-3 mx-3">
                         <thead>
                             <tr>
@@ -718,7 +716,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Table CF Gabungan (Dihitung dengan MB * Nilai User - MD) -->
 					<table class="table table-hover mt-5 border border-info p-3 mx-3">
 						<thead>
 							<tr>
@@ -746,7 +743,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Section 3 -->
         <div class="row">
@@ -759,7 +756,7 @@
                       <h5 class="card-title">
                         {{ $diagnosis_dipilih["kode_penyakit"]->kode_penyakit }} | {{ $diagnosis_dipilih["kode_penyakit"]->penyakit }}
                         </h5>
-                      <p class="card-text">Jadi dapat disimpulkan bahwa pasien mengalami <strong>{{ $diagnosis_dipilih["kode_penyakit"]->penyakit }}</strong> dengan persentase sebesar <span class="fw-semibold fs-4">{{ round(($diagnosis_dipilih["value"] * 100), 2) }}</span> %</p>
+                      <p class="card-text">Jadi berdasarkan gejala yang dialami oleh pasien dapat disimpulkan bahwa pasien mengalami <strong>{{ $diagnosis_dipilih["kode_penyakit"]->penyakit }}</strong> dengan persentase sebesar <span class="fw-semibold fs-4">{{ round(($diagnosis_dipilih["value"] * 100), 2) }}</span> %</p>
                       <p class="card-text">Penanganan : <br>
                       {{ $diagnosis_dipilih["kode_penyakit"]->penangan }}
                       </p>
@@ -792,7 +789,7 @@
         <footer id="footer" class="clear">
 			<div id="smart-footer">
 				<div class="wrap normal text-center">
-                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Infeksi Jamur</h6>
+                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Autoimun</h6>
 				</div>
 			</div>
 		</footer>
@@ -800,95 +797,9 @@
 
 <script>
         function printUserReport() {
-    // Data dari server-side (gunakan Blade untuk menyisipkan data secara dinamis)
-    var namaPengunjung = {!! json_encode($akun->nama) !!}; // Nama pengunjung
-    var gejala = {!! json_encode($gejala_by_user) !!}; // Gejala dalam bentuk array
-    var penyakit = {!! json_encode($diagnosis_dipilih["kode_penyakit"]->penyakit) !!};
-    var pengobatan = {!! json_encode($diagnosis_dipilih["kode_penyakit"]->penangan) !!};
-
-    var gejalaArray = Object.values(gejala);
-
-    // Membuka jendela baru untuk mencetak
-    var reportWindow = window.open('', '_blank');
-    reportWindow.document.write(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Cetak Hasil Konsultasi</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        </head>
-        <body text="black" align="center">
-            <center>
-                <table width="1000" border="0" cellpadding="2" cellspacing="1">
-                    <tr>
-                        <td>
-                            <font size="5">
-                                <center>HASIL DIAGNOSIS INFEKSI KULIT AKIBAT JAMUR<br>RSUD Dr. Margono Soekarjo</center>
-                            </font>
-                            <font size="2">
-                                <center>Alamat: Jl. Dr. Angka No. 1-2 Purwokerto, Kabupaten Banyumas Provinsi Jawa Tengah, Kode Pos 53122</center>
-                            </font>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><hr></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <center>
-                                <table width="100%" border="1" cellspacing="1" cellpadding="2">
-                                    <thead>
-                                        <tr align="center">
-                                            <th>Nama</th>
-                                            <th>Gejala Yang Didiagnosis</th>
-                                            <th>Penyakit</th>
-                                            <th>Pengobatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr align="center">
-                                            <td>${namaPengunjung}</td>
-                                            <td>
-                                            ${gejalaArray.map(item => `${item[0]} - ${item[2]}`).join('<br>')}
-                                            </td>
-                                            <td>${penyakit}</td>
-                                            <td>${pengobatan}</td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-                            </center>
-                        </td>
-                    </tr>
-                </table>
-                <p>
-                    <table width="1000" border="0">
-                        <tr>
-                            <td width="750">&nbsp;</td>
-                            <td colspan="3">
-                                <div align="left">
-                                    <font size="3">
-                                        Mengetahui,<br><br><br><br><br><br>
-                                        <u>Dr.CITRA PRIMANITA,Sp.KK</u><br>
-                                    </font>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </p>
-            </center>
-            <script>
-                window.print();
-                window.close();
-            <\/script>
-        </body>
-        </html>
-    `);
-    reportWindow.document.close();
-}
-
+            // Cetak halaman langsung
+            window.print();
+        }
     </script>
 
 	<script

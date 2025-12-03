@@ -47,7 +47,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 		rel="stylesheet" />
 	<link media="print" href="depresi-assets/wp-content/cache/autoptimize/css/autoptimize_5653ccbbff2bf3fde17022871919df8b.css"
 		rel="stylesheet" />
-	<title>Diagnosis Infeksi Jamur</title>
+	<title>Diagnosis Autoimun</title>
 	<meta name="description"
 		content="Take our depression test if you are feeling overwhelming sadness—it&#039;s free, quick, confidential, and scientifically validated." />
 	<link rel="canonical" href="index.html" />
@@ -624,7 +624,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 						<ul id="main-menu" class="sf-menu">
 							<li id="menu-item-406"
 								class="heading left-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-406">
-								<a href="/form-diagnosa">Diagnosis Infeksi Jamur</a>
+								<a href="/form-diagnosa">Diagnosis Autoimun</a>
 							</li>
 						</ul>
 					</div>
@@ -679,8 +679,8 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#faqAccordion">
                             <div class="card-body">
-                            Tes ini bertujuan untuk membantu pengguna mengidentifikasi kemungkinan penyakit kulit akibat
-                            infeksi jamur berdasarkan gejala yang dialami. Hasil diagnosis awal dapat digunakan sebagai
+                            Tes ini bertujuan untuk membantu pengguna mengidentifikasi kemungkinan penyakit Autoimun
+                            berdasarkan gejala yang dialami. Hasil diagnosis awal dapat digunakan sebagai
                             langkah pertama sebelum berkonsultasi dengan dokter.
                             </div>
                         </div>
@@ -736,7 +736,7 @@ var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function
 		<footer id="footer" class="clear">
 			<div id="smart-footer">
 				<div class="wrap normal text-center">
-                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Infeksi Jamur</h6>
+                    <h6 style="text-align:center;font-family:arial;font-weight: bold;color: white">© 2025 Sistem Pakar Autoimun</h6>
 				</div>
 			</div>
 		</footer>

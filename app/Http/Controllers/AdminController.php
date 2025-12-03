@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TblAkun;
 use App\Models\Gejala;
 use App\Models\Penyakit;
-use App\Models\Diagnosis;
+use App\Models\DsDiagnosis;
 
 class AdminController extends Controller
 {
@@ -16,7 +16,7 @@ class AdminController extends Controller
         // Ambil data dari database
         $gejala = Gejala::all();
         $penyakit = Penyakit::all();
-        $diagnosis = Diagnosis::all();
+        $diagnosis = DsDiagnosis::all();
 
         // Hitung jumlah data
         $gejala_count = $gejala->count();
@@ -38,7 +38,7 @@ class AdminController extends Controller
         // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:tblakun,email',
+            'telepon' => 'required|string|max:20|unique:tblakun,telepon',
             'sandi' => 'required|min:8',
             'alamat' => 'required|string',
             'jk' => 'required|string',
@@ -52,7 +52,7 @@ class AdminController extends Controller
         // Simpan data
         $akun = new Tblakun();
         $akun->nama = $request->nama;
-        $akun->email = $request->email;
+        $akun->telepon = $request->telepon;
         $akun->sandi = bcrypt($request->sandi);
         $akun->alamat = $request->alamat;
         $akun->jk = $request->jk;

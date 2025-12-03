@@ -39,12 +39,12 @@ class UserController extends Controller
     {
         // Validasi input
         $request->validate([
-            'email' => 'required|email',
+            'telepon' => 'required|string',
             'sandi' => 'required|min:8',
         ]);
 
-        // Cari pengguna berdasarkan email
-        $akun = Tblakun::where('email', $request->email)->first();
+        // Cari pengguna berdasarkan nomor telepon
+        $akun = Tblakun::where('telepon', $request->telepon)->first();
 
         if ($akun && password_verify($request->sandi, $akun->sandi)) {
             // Simpan data pengguna ke session
@@ -71,7 +71,7 @@ class UserController extends Controller
         }
 
         // Jika gagal login
-        return back()->withErrors(['login' => 'Email atau kata sandi salah.'])->withInput();
+        return back()->withErrors(['login' => 'Nomor telepon atau kata sandi salah.'])->withInput();
     }
 
 
@@ -92,7 +92,7 @@ class UserController extends Controller
         // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:tblakun,email',
+            'telepon' => 'required|string|max:20|unique:tblakun,telepon',
             'sandi' => 'required|min:8',
             'alamat' => 'required|string',
             'jk' => 'required|string',
@@ -106,7 +106,7 @@ class UserController extends Controller
         // Simpan data
         $akun = new Tblakun();
         $akun->nama = $request->nama;
-        $akun->email = $request->email;
+        $akun->telepon = $request->telepon;
         $akun->sandi = bcrypt($request->sandi);
         $akun->alamat = $request->alamat;
         $akun->jk = $request->jk;

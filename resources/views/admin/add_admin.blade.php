@@ -55,14 +55,14 @@
                         </div>
                     </div>
 
-                    <!-- Email -->
+                    <!-- Nomor Telepon -->
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                        <label for="telepon" class="col-md-4 col-form-label text-md-end">Nomor Telepon</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="telepon" type="tel" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" required autocomplete="tel">
 
-                            @error('email')
+                            @error('telepon')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -158,26 +158,21 @@ class DiagnosisController extends Controller
         return redirect()->back()->withErrors('Penyakit not found');
     }
 
-    // Ambil kode gejala
     $kodeGejala = array_column($gejala, 0);
 
-    // Ambil data pakar untuk kode gejala yang ada
     $pakar = NilaiCF::whereIn("kode_gejala", $kodeGejala)
         ->where("kode_penyakit", $diagnosis_dipilih["kode_penyakit"]->kode_penyakit)
         ->get();
 
-    // Filter gejala berdasarkan pakar
     $gejala_by_user = array_filter($gejala, function ($gKey) use ($pakar) {
         return $pakar->contains("kode_gejala", $gKey[0] ?? null);
     });
 
-    // Tambahkan nama gejala ke dalam gejala_by_user
     foreach ($gejala_by_user as &$item) {
         $nama_gejala = Gejala::where('kode_gejala', $item[0])->first()->gejala ?? 'Unknown';
-        $item[] = $nama_gejala;  // Menambahkan nama gejala
+        $item[] = $nama_gejala; 
     }
 
-    // Ambil nilai CF pakar dan user
     $nilaiPakar = $pakar->map(fn ($key) => $key->mb - $key->md)->toArray();
     $nilaiUser = array_column($gejala_by_user, 1);
 

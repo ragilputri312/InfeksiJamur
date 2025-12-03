@@ -16,7 +16,8 @@ class CreateTblakunTable extends Migration
         Schema::create('tblakun', function (Blueprint $table) {
             $table->id('id_akun'); // Primary key
             $table->string('nama'); // Nama pengguna
-            $table->string('email')->unique(); // Email pengguna
+            $table->string('telepon')->unique(); // Nomor telepon utama untuk login
+            $table->string('email')->nullable()->unique(); // Email (opsional)
             $table->string('sandi'); // Kata sandi
             $table->string('alamat'); // Alamat pengguna
             $table->string('jk'); // Jenis kelamin (Laki-laki / Perempuan)

@@ -10,7 +10,7 @@
     <!-- Basic Page Needs
  ================================================== -->
     <meta charset="utf-8">
-    <title>DIAGNOSIS INFEKSI JAMUR</title>
+    <title>DIAGNOSIS AUTOIMUN</title>
     <meta name="description" content="Professional Creative Template" />
     <meta name="author" content="IG Design">
     <meta name="keywords"
@@ -85,12 +85,19 @@
                 <a class="shadow-hover" href="/">Dashboard</a>
             </li>
             <li>
-                <a class="shadow-hover" href="/form-diagnosa">Diagnosis</a>
+                <a class="shadow-hover" href="/form-faq">Diagnosis</a>
             </li>
 
             @if(session('user_role') == 1)
             <li>
                 <a class="shadow-hover" href="/dashboard">Halaman Admin</a>
+            </li>
+            @endif
+
+            <!-- Menu Riwayat Diagnosis untuk client yang sudah login -->
+            @if(session()->has('user_id') && session('user_role') != 1)
+            <li>
+                <a class="shadow-hover" href="{{ route('client.diagnosis.history') }}">Riwayat Diagnosis</a>
             </li>
             @endif
 
@@ -124,7 +131,7 @@
         <!-- Hero Section -->
 
         <div class="section full-height mob-height">
-            <div class="background-parallax" style="background-image: url('landing/img/bg_infeksi.PNG')"
+            <div class="background-parallax" style="background-image: url('landing/img/bg_autoimun.png')"
                 data-enllax-ratio=".5" data-enllax-type="background" data-enllax-direction="vertical"></div>
             <div class="hero-center-text-wrap">
                 <div class="container text-left">
@@ -136,7 +143,7 @@
                                 @if(session()->has('user_name'))
                                     Hi, {{ session('user_name') }}! <br>
                                 @endif
-                                Cek Tingkat <strong>Infeksi Jamur</strong> Sekarang!<br>
+                                Apakah Gejala yang Kamu Rasakan Mengarah ke <strong>Autoimun</strong>?<br>
                                 <span id="typed-1"></span>
                             </h1>
                             <br>
@@ -147,9 +154,8 @@
                                 }
                               </style>
                               <div style="margin-left: 12px">
-
-                                <a href="/form-diagnosa"  class="btn btn-dark btn-glow" role="button" style="color: rgb(218, 116, 22);">
-                                  Isi form
+                                <a href="/form-faq"  class="btn btn-dark btn-glow" role="button" style="color: rgb(218, 116, 22);">
+                                  <i class="bi bi-diagram-3 me-1"></i>Diagnosis Penyakit Autoimun
                                 </a>
                               </div>
                         </div>
@@ -170,9 +176,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 page-center-text-wrap text-center">
-                        <h1 class="parallax"><strong>-</strong> DIAGNOSIS PENYAKIT KULIT AKIBAT INFEKSI JAMUR
-                            <strong>-</strong><br><br>Sistem Pakar Menggunakan Metode Certainty Factor
-                            <br> Sumber Pakar : Dokter Spesialis Kulit dan Kelamin RSUD Margono
+                        <h1 class="parallax"><strong>-</strong> DIAGNOSIS PENYAKIT AUTOIMUN
+                            <strong>-</strong><br><br>Sistem Pakar Menggunakan Metode Dempster-Shafer dan Fuzzy Logic
                         </h1>
                     </div>
                 </div>
@@ -183,7 +188,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Maria Pasya Saragih</p>
+                        <p>Ragil Putri Rahmadani</p>
                     </div>
                     <div class="col-md-12 my-4">
                         <ul class="footer-social">
@@ -225,7 +230,7 @@
         // Type text
 
         var typed = new Typed('#typed-1', {
-            strings: ['Diagnosis', 'Penyakit', 'Kulit'],
+            strings: ['Diagnosis', 'Penyakit', 'Autoimun'],
             typeSpeed: 45,
             backSpeed: 0,
             startDelay: 200,

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Penyakit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\PenyakitStoreRequest;
+use App\Http\Requests\PenyakitUpdateRequest;
 
 class PenyakitController extends Controller
 {
      // Menampilkan data penyakit
      public function index()
      {
-         $penyakit = Penyakit::paginate(10); // Mengambil data penyakit dengan pagination
+         $penyakit = Penyakit::orderBy('kode_penyakit')->paginate(10); // Mengambil data penyakit dengan pagination
          return view('admin.penyakit.penyakit', compact('penyakit'));
      }
 
@@ -22,16 +24,10 @@ class PenyakitController extends Controller
 
         return response()->json($penyakit);
     }
-    
-     // Menyimpan data penyakit baru
-     public function store(Request $request)
-     {
-         $request->validate([
-             'kode_penyakit' => 'required|unique:tblpenyakit',
-             'penyakit' => 'required',
-             'penangan' => 'required',
-         ]);
 
+     // Menyimpan data penyakit baru
+     public function store(PenyakitStoreRequest $request)
+     {
          Penyakit::create([
              'kode_penyakit' => $request->kode_penyakit,
              'penyakit' => $request->penyakit,
@@ -43,14 +39,8 @@ class PenyakitController extends Controller
      }
 
      // Mengupdate data penyakit
-     public function update(Request $request, $id)
+     public function update(PenyakitUpdateRequest $request, $id)
      {
-         $request->validate([
-             'kode_penyakit' => 'required',
-             'penyakit' => 'required',
-             'penangan' => 'required',
-         ]);
-
          $penyakit = Penyakit::findOrFail($id);
          $penyakit->update([
              'kode_penyakit' => $request->kode_penyakit,

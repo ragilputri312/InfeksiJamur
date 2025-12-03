@@ -35,7 +35,7 @@
                             <i class="bi bi-person-fill"></i>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $admin->nama }}</h5>
-                                <p class="card-text">{{ $admin->email }}</p>
+                                <p class="card-text">{{ $admin->telepon ?? '-' }}</p>
                             </div>
                         </div>
                     @endforeach

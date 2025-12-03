@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="card-body">
-                      <h5 class="card-title">Infeksi <span>| Jamur</span></h5>
+                      <h5 class="card-title">Penyakit <span>| Autoimun</span></h5>
 
                       <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="card-body pb-0">
-                      <h5 class="card-title">Infeksi <span>| Jamur</span></h5>
+                      <h5 class="card-title">Penyakit <span>| Autoimun</span></h5>
 
                       <table class="table table-borderless">
                         <thead>

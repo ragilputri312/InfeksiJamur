@@ -8,6 +8,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\NilaiCFController;
+use App\Http\Controllers\DsRuleController;
+use App\Http\Controllers\DsDiagnosisController;
+use App\Http\Controllers\FuzzyCategoryController;
+use App\Http\Controllers\FuzzyRuleController;
 use App\Http\Middleware\CheckLogin;
 use App\Models\Gejala;
 use App\Models\IntervalCF;
@@ -19,28 +23,12 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/registration', [UserController::class, 'registration'])->name('user.registration');
 Route::resource('user', UserController::class);
 
-// Terapkan middleware langsung pada route
-Route::get('/form-diagnosa', function () {
-    return view('form_diagnosa');
-})->middleware(CheckLogin::class);
-
-Route::get('/form', function () {
-    $data = [
-        'gejala' => Gejala::all(),
-        'nilai_interval' => IntervalCF::all()
-    ];
-
-    return view('form', $data);
-})->middleware(CheckLogin::class);
-
+// DS Diagnosis Routes (replacing CF diagnosis)
+Route::get('/form-diagnosis', [DsDiagnosisController::class, 'index'])->name('form-diagnosis')->middleware(CheckLogin::class);
+Route::get('/form-faq', [DsDiagnosisController::class, 'faqIndex'])->name('form-faq')->middleware(CheckLogin::class);
 Route::get('/result', function () {
-    return view('clients.cl_diagnosa_result');
+    return redirect()->route('ds-diagnosis.index');
 })->middleware(CheckLogin::class);
-
-Route::resource('diagnosis', DiagnosisController::class)->middleware(CheckLogin::class);
-Route::get('/diagnosis/result/{diagnosis_id}', [DiagnosisController::class, 'diagnosisResult'])->name('diagnosis.result')->middleware(CheckLogin::class);
-Route::get('/hasil_diagnosis', [DiagnosisController::class, 'indexAdmin'])->name('diagnosis.indexAdmin')->middleware(CheckLogin::class);
-Route::get('/getDiagnosisData/{diagnosis_id}', [DiagnosisController::class, 'getDiagnosisData'])->middleware(CheckLogin::class);
 
 
 //admin
@@ -67,5 +55,33 @@ Route::resource('penyakit', PenyakitController::class)->middleware(CheckLogin::c
 Route::put('/penyakit/{id}', [PenyakitController::class, 'update'])->name('penyakit.update')->middleware(CheckLogin::class);
 Route::get('/penyakit/{id}', [PenyakitController::class, 'show'])->name('penyakit.show')->middleware(CheckLogin::class);
 
-Route::resource('nilaicf', NilaiCFController::class)->middleware(CheckLogin::class);
-Route::put('/nilaicf/{id}', [NilaiCFController::class, 'update'])->name('nilaicf.update')->middleware(CheckLogin::class);
+// CF routes removed - using DS diagnosis instead
+
+Route::resource('ds-rules', DsRuleController::class)->except(['create', 'edit'])->middleware(CheckLogin::class);
+
+// Fuzzy Categories Routes
+Route::resource('fuzzy-categories', FuzzyCategoryController::class)->except(['create', 'edit', 'show'])->middleware(CheckLogin::class);
+
+// Fuzzy Parameters Routes (Kemunculan & Keunikan)
+Route::get('/fuzzy-parameters', [App\Http\Controllers\FuzzyParameterController::class, 'index'])->name('fuzzy-parameters.index')->middleware(CheckLogin::class);
+Route::post('/fuzzy-parameters', [App\Http\Controllers\FuzzyParameterController::class, 'store'])->name('fuzzy-parameters.store')->middleware(CheckLogin::class);
+Route::put('/fuzzy-parameters/{id}', [App\Http\Controllers\FuzzyParameterController::class, 'update'])->name('fuzzy-parameters.update')->middleware(CheckLogin::class);
+Route::delete('/fuzzy-parameters/{id}', [App\Http\Controllers\FuzzyParameterController::class, 'destroy'])->name('fuzzy-parameters.destroy')->middleware(CheckLogin::class);
+
+// DS Diagnosis Routes
+Route::get('/ds-diagnosis', [DsDiagnosisController::class, 'index'])->name('ds-diagnosis.index')->middleware(CheckLogin::class);
+Route::post('/ds-diagnosis/process', [DsDiagnosisController::class, 'process'])->name('ds-diagnosis.process')->middleware(CheckLogin::class);
+Route::get('/ds-diagnosis/result/{id}', [DsDiagnosisController::class, 'result'])->name('ds-diagnosis.result')->middleware(CheckLogin::class);
+
+// Client Diagnosis History Routes
+Route::get('/riwayat-diagnosis', [DsDiagnosisController::class, 'clientHistory'])->name('client.diagnosis.history')->middleware(CheckLogin::class);
+Route::get('/riwayat-diagnosis/{id}', [DsDiagnosisController::class, 'clientHistoryDetail'])->name('client.diagnosis.detail')->middleware(CheckLogin::class);
+
+// Admin DS Diagnosis Routes
+Route::get('/admin/ds-diagnosis', [DsDiagnosisController::class, 'adminIndex'])->name('admin.ds-diagnosis.index')->middleware(CheckLogin::class);
+Route::get('/admin/ds-diagnosis/{id}', [DsDiagnosisController::class, 'adminShow'])->name('admin.ds-diagnosis.show')->middleware(CheckLogin::class);
+
+// Fuzzy Rules Routes
+Route::get('/admin/fuzzy-rules', [FuzzyRuleController::class, 'index'])->name('admin.fuzzy-rules.index')->middleware(CheckLogin::class);
+Route::get('/admin/fuzzy-rules/explanation', [FuzzyRuleController::class, 'explanation'])->name('admin.fuzzy-rules.explanation')->middleware(CheckLogin::class);
+

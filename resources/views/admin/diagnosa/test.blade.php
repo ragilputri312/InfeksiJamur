@@ -1,5 +1,5 @@
 @extends('clients.cl_main')
-@section('title', 'Form Diagnosa')
+@section('title', 'Form Diagnosis')
 
 @section('cl_content')
     <div class="contaner">

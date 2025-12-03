@@ -14,6 +14,7 @@ class TblAkun extends Model
     protected $fillable = [
         'nama',
         'email',
+        'telepon',
         'sandi',
         'alamat',
         'jk',
