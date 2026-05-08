@@ -8,13 +8,45 @@ use App\Models\FuzzyParameter;
 
 class FuzzyLogicService
 {
-    /**
-     * Hitung nilai densitas menggunakan metode Tsukamoto
-     *
-     * @param string $kemunculan Kemunculan gejala (Sangat Jarang, Kadang-Kadang, Sering)
-     * @param string $keunikan Keunikan gejala (Rendah, Sedang, Tinggi)
-     * @return float Nilai densitas antara 0-1
+
+     /**
+     * Hitung nilai densitas untuk semua gejala yang dipilih
      */
+
+    public function calculateAllDensitas($selectedSymptoms)
+    {
+        $results = [];
+
+        foreach ($selectedSymptoms as $gejalaId => $data) {
+            if ($data['jawaban'] !== 'Ya') continue;
+
+            // 1) numeric kemunculan
+            $kemVal = FuzzyParameter::getNilaiByLabel('kemunculan', $data['kemunculan']);
+
+            // 2) avg keunikan numerik
+            $rules = DsRule::where('gejala_id', $gejalaId)->get();
+            $sum = 0.0; $cnt = 0;
+            foreach ($rules as $r) {
+                $sum += FuzzyParameter::getNilaiByLabel('keunikan', $r->keunikan);
+                $cnt++;
+            }
+            $avgKeuVal = $cnt ? $sum / $cnt : 0.5;
+
+            // (opsional) label hanya untuk ditampilkan
+            $keunikanLabel = FuzzyParameter::getLabelByNilai('keunikan', $avgKeuVal);
+
+            // 3) hitung Tsukamoto dengan nilai numerik
+            $dens = $this->calculateDensitasNumeric($kemVal, $avgKeuVal);
+
+            $results[$gejalaId] = [
+                'gejala'     => Gejala::find($gejalaId),
+                'kemunculan' => $data['kemunculan'],   // label untuk UI
+                'keunikan'   => $keunikanLabel,        // label untuk UI
+                'densitas'   => $dens,                 // hasil numerik kontinu
+            ];
+        }
+        return $results;
+    }
 
     public function calculateDensitasNumeric(float $kemunculanVal, float $keunikanVal): float
     {
@@ -86,48 +118,6 @@ class FuzzyLogicService
             $distance = $value - $range['max'];
             return max(0, 1 - $distance / 0.3);
         }
-    }
-
-    /**
-     * Hitung nilai densitas untuk semua gejala yang dipilih
-     *
-     * @param array $selectedSymptoms Array gejala yang dipilih dengan kemunculan
-     * @return array Array dengan id gejala dan nilai densitas
-     */
-
-    public function calculateAllDensitas($selectedSymptoms)
-    {
-        $results = [];
-
-        foreach ($selectedSymptoms as $gejalaId => $data) {
-            if ($data['jawaban'] !== 'Ya') continue;
-
-            // 1) numeric kemunculan
-            $kemVal = FuzzyParameter::getNilaiByLabel('kemunculan', $data['kemunculan']);
-
-            // 2) avg keunikan numerik
-            $rules = DsRule::where('gejala_id', $gejalaId)->get();
-            $sum = 0.0; $cnt = 0;
-            foreach ($rules as $r) {
-                $sum += FuzzyParameter::getNilaiByLabel('keunikan', $r->keunikan);
-                $cnt++;
-            }
-            $avgKeuVal = $cnt ? $sum / $cnt : 0.5;
-
-            // (opsional) label hanya untuk ditampilkan
-            $keunikanLabel = FuzzyParameter::getLabelByNilai('keunikan', $avgKeuVal);
-
-            // 3) hitung Tsukamoto dengan nilai numerik
-            $dens = $this->calculateDensitasNumeric($kemVal, $avgKeuVal);
-
-            $results[$gejalaId] = [
-                'gejala'     => Gejala::find($gejalaId),
-                'kemunculan' => $data['kemunculan'],   // label untuk UI
-                'keunikan'   => $keunikanLabel,        // label untuk UI
-                'densitas'   => $dens,                 // hasil numerik kontinu
-            ];
-        }
-        return $results;
     }
 
 }

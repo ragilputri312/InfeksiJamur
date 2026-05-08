@@ -5,68 +5,9 @@ namespace App\Services;
 use App\Models\DsRule;
 use App\Models\Penyakit;
 
-/**
- * Service untuk perhitungan kombinasi evidence menggunakan teori Dempster-Shafer
- *
- * Implementasi teori Dempster-Shafer yang akurat dengan:
- * - Mass function untuk setiap gejala
- * - Kombinasi evidence menggunakan rumus Dempster-Shafer
- * - Perhitungan konflik (K) dalam sistem
- * - Normalisasi hasil kombinasi
- *
- * @author Sistem Pakar CF
- * @version 2.0
- */
+
 class DempsterShaferService
 {
-    /**
-     * Kombinasi Dempster-Shafer untuk menggabungkan nilai densitas (metode lama)
-     *
-     * @param array $densitasResults Array hasil perhitungan densitas fuzzy
-     * @return array Array penyakit dengan nilai belief
-     */
-    public function combineEvidence($densitasResults)
-    {
-        // Ambil semua penyakit yang memiliki rules
-        $penyakitIds = DsRule::distinct()->pluck('penyakit_id')->toArray();
-        $penyakitBeliefs = [];
-
-        foreach ($penyakitIds as $penyakitId) {
-            $belief = $this->calculatePenyakitBelief($penyakitId, $densitasResults);
-            $penyakitBeliefs[$penyakitId] = $belief;
-        }
-
-        return $penyakitBeliefs;
-    }
-
-    /**
-     * Kombinasi Dempster-Shafer yang akurat sesuai teori
-     *
-     * Implementasi teori Dempster-Shafer yang benar dengan:
-     * 1. Hitung mass function untuk setiap GEJALA (bukan penyakit)
-     * 2. Setiap gejala adalah satu evidence yang bisa mendukung multiple penyakit
-     * 3. Kombinasi evidence menggunakan rumus: m12(A) = (Σ m1(X) * m2(Y)) / (1 - K)
-     * 4. Hitung konflik K = Σ m1(X) * m2(Y) untuk X∩Y = ∅
-     * 5. Normalisasi hasil kombinasi
-     *
-     * @param array $densitasResults Array hasil perhitungan densitas fuzzy
-     *                              Format: [gejala_id => ['densitas' => float]]
-     * @return array Array dengan hasil kombinasi evidence
-     *               Format: [
-     *                   'penyakit_beliefs' => [penyakit_id => belief_value],
-     *                   'combined_mass' => [penyakit_id => mass_value],
-     *                   'total_conflict' => float
-     *               ]
-     *
-     * @example
-     * $densitasResults = [
-     *     1 => ['densitas' => 0.8],  // Gejala 1
-     *     2 => ['densitas' => 0.6],  // Gejala 2
-     *     3 => ['densitas' => 0.7]    // Gejala 3
-     * ];
-     * $result = $service->combineEvidenceAccurate($densitasResults);
-     * echo "Diagnosis utama: " . $result['penyakit_beliefs'][1];
-     */
     public function combineEvidenceAccurate($densitasResults)
     {
         // Hitung mass function untuk setiap GEJALA yang dipilih
@@ -95,7 +36,7 @@ class DempsterShaferService
     }
 
     /**
-     * Hitung belief untuk satu penyakit menggunakan kombinasi Dempster-Shafer (metode lama)
+     * Hitung belief untuk satu penyakit menggunakan kombinasi Dempster-Shafer (metode lama - TIDAK DIPAKAI)
      */
     private function calculatePenyakitBelief($penyakitId, $densitasResults)
     {
@@ -132,12 +73,6 @@ class DempsterShaferService
 
     /**
      * Hitung mass function untuk satu GEJALA berdasarkan densitas dan penyakit yang berhubungan
-     *
-     * Dalam teori Dempster-Shafer yang benar:
-     * - Setiap gejala adalah satu evidence
-     * - Satu gejala bisa mendukung multiple penyakit
-     * - Mass function berbentuk: m({P1, P2, ...}) = densitas * keunikan
-     * - m({θ}) = 1 - densitas (ketidaktahuan)
      */
     private function calculateMassFunctionPerGejala($gejalaId, $densitas)
     {
@@ -188,13 +123,6 @@ class DempsterShaferService
 
     /**
      * Kombinasi semua evidence menggunakan rumus Dempster-Shafer
-     *
-     * Menangani mass function yang bisa berisi:
-     * - Single penyakit: {P1}
-     * - Multiple penyakit: {P1,P2,P3}
-     * - Theta: {θ}
-     *
-     * @return array Array dengan 'beliefs' dan 'K' (total conflict dari kombinasi terakhir)
      */
     private function combineAllEvidence($massFunctions)
     {
@@ -274,11 +202,6 @@ class DempsterShaferService
 
     /**
      * Kombinasi dua evidence menggunakan rumus Dempster-Shafer
-     *
-     * Menangani subset intersection yang lengkap:
-     * - {P1} ∩ {P2} = ∅ (konflik)
-     * - {P1} ∩ {P1,P2} = {P1} (intersection)
-     * - {P1,P2} ∩ {P2,P3} = {P2} (subset intersection)
      */
     private function combineTwoEvidence($mass1, $mass2)
     {
@@ -645,48 +568,6 @@ class DempsterShaferService
         return $penyakitTerkait;
     }
 
-    /**
-     * Bandingkan hasil metode lama vs baru
-     */
-    public function compareMethods($densitasResults)
-    {
-        $oldMethod = $this->combineEvidence($densitasResults);
-        $newMethod = $this->combineEvidenceAccurate($densitasResults);
-
-        $comparison = [
-            'old_method' => $oldMethod,
-            'new_method' => $newMethod,
-            'differences' => [],
-            'improvements' => []
-        ];
-
-        // Hitung perbedaan
-        foreach ($oldMethod as $penyakitId => $oldBelief) {
-            $newBelief = $newMethod['penyakit_beliefs'][$penyakitId] ?? 0;
-            $difference = abs($newBelief - $oldBelief);
-
-            $comparison['differences'][$penyakitId] = [
-                'old_belief' => $oldBelief,
-                'new_belief' => $newBelief,
-                'difference' => $difference,
-                'percentage_change' => $oldBelief > 0 ? (($newBelief - $oldBelief) / $oldBelief) * 100 : 0
-            ];
-        }
-
-        // Analisis perbaikan
-        $oldMax = max($oldMethod);
-        $newMax = max($newMethod['penyakit_beliefs']);
-
-        if ($newMax > $oldMax) {
-            $comparison['improvements'][] = "Belief tertinggi meningkat dari {$oldMax} menjadi {$newMax}";
-        }
-
-        if ($newMethod['total_conflict'] > 0) {
-            $comparison['improvements'][] = "Konflik terdeteksi: {$newMethod['total_conflict']} (metode lama tidak menghitung konflik)";
-        }
-
-        return $comparison;
-    }
 
     /**
      * Hitung nilai conflict (K) untuk seluruh sistem
